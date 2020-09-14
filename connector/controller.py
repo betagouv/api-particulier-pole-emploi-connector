@@ -2,7 +2,7 @@ from flask import Blueprint, request, current_app, jsonify
 import connector.airtable_client as client
 
 bp = Blueprint(
-    "Recherche situation individu", __name__, url_prefix="/situation-individu"
+    "Recherche situation individu", __name__, url_prefix="/situations-individu"
 )
 
 
