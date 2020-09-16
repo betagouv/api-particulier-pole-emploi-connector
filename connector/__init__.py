@@ -1,6 +1,7 @@
 import os
 
 from flask import Flask
+from flask_restplus import Api
 
 
 def create_app(config="connector.config.ProductionConfig"):
@@ -11,5 +12,11 @@ def create_app(config="connector.config.ProductionConfig"):
 
     from . import controller
 
-    app.register_blueprint(controller.bp)
+    api = Api(
+        app=app,
+        version="0.1",
+        title="Connecteur Pôle Emploi",
+        description="Connecteur utilisé par API Particulier pour fournir de la donnée Pôle Emploi",
+    )
+    api.add_namespace(controller.api)
     return app

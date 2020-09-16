@@ -30,6 +30,7 @@ def get_situation(id):
         "dateNaissance": record.get("dateNaissance"),
         "nom": record.get("nom"),
         "dateRadiation": record.get("dateRadiation"),
+        "dateProchaineConvocation": record.get("dateRadiation"),
         "prenom": record.get("prenom"),
         "adresse": {
             "codePostal": record.get("codePostal"),
@@ -37,6 +38,9 @@ def get_situation(id):
             "ligneVoie": record.get("ligneVoie"),
             "ligneNom": record.get("ligneNom"),
             "localite": record.get("localite"),
+            "ligneComplementDestinataire": record.get("ligneComplementDestinataire"),
+            "ligneComplementAdresse": record.get("ligneComplementAdresse"),
+            "ligneComplementDistribution": record.get("ligneComplementDistribution"),
         },
     }
 
