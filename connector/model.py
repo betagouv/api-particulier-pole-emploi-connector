@@ -3,7 +3,7 @@ from flask_restplus import Namespace, fields, Model
 
 class SituationModel:
     api = Namespace(
-        "Situations Pôle Emploi",
+        "Pôle Emploi",
         description="Situation Pôle Emploi d'un individu",
         path="/v2/situations-pole-emploi",
     )
