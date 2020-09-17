@@ -3,12 +3,12 @@ from flask_restplus import Namespace, fields, Model
 
 class SituationModel:
     api = Namespace(
-        "Situations Individus",
+        "Situations Pôle Emploi",
         description="Situation Pôle Emploi d'un individu",
-        path="/situation-individus",
+        path="/v2/situations-pole-emploi",
     )
     situation = api.model(
-        "Situation Individu",
+        "SituationPôleEmploi",
         {
             "email": fields.String(
                 description="L’adresse mail", example="georges@moustaki.fr"
