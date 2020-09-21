@@ -6,7 +6,7 @@ api = SituationModel.api
 _situation = SituationModel.situation
 
 
-@api.route("/")
+@api.route("")
 @api.response(404, "Individu introuvable")
 class Situation(Resource):
     @api.doc("get_situation")
