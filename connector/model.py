@@ -105,3 +105,9 @@ class SituationModel:
             ),
         },
     )
+
+
+parser = SituationModel.api.parser()
+parser.add_argument(
+    "identifiant", type=str, location="args", required=True,
+)
