@@ -1,8 +1,10 @@
-import { Controller, Get, Inject, Query } from '@nestjs/common';
+import { Controller, Get, Inject, Query, UseFilters } from '@nestjs/common';
 import {
   JobSeekerSituationId,
   JobSeekerSituation,
 } from 'src/job-seeker/entities/job-seeker-situation.entity';
+import { JobSeekerSituationNotFoundErrorFilter } from 'src/job-seeker/filters/job-seeker-situation-not-found.filter';
+import { GatewayErrorFilter } from 'src/job-seeker/filters/gateway-error.filter';
 import {
   JobSeekerSituationRepository,
   jobSeekerSituationRepositoryProviderToken,
@@ -16,6 +18,8 @@ export class JobSeekerController {
   ) {}
 
   @Get()
+  @UseFilters(JobSeekerSituationNotFoundErrorFilter)
+  @UseFilters(GatewayErrorFilter)
   searchJobSeekerSituation(
     @Query('identifiant') id: JobSeekerSituationId,
   ): Promise<JobSeekerSituation> {

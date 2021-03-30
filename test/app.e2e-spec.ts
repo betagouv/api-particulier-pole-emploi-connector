@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication } from '@nestjs/common';
+import { GatewayTimeoutException, INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { JobSeekerModule } from 'src/job-seeker/job-seeker.module';
 import {
@@ -8,7 +8,7 @@ import {
   JobSeekerSituationId,
 } from 'src/job-seeker/entities/job-seeker-situation.entity';
 import { jobSeekerSituationRepositoryProviderToken } from 'src/job-seeker/repositories/job-seeker-situation.repository';
-import { MockJobSeekerSituationRepository } from 'test/mocks/job-seeker-situation.repository';
+import { JobSeekerSituationNotFoundError } from 'src/job-seeker/errors/job-seeker-situation-not-found.error';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
@@ -41,12 +41,16 @@ describe('AppController (e2e)', () => {
     'PERSONNE SANS EMPLOI DISPONIBLE DUREE INDETERMINEE PLEIN TPS',
   );
 
+  const jobSeekerSituationRepositoryMock = {
+    findById: jest.fn(),
+  };
+
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [JobSeekerModule],
     })
       .overrideProvider(jobSeekerSituationRepositoryProviderToken)
-      .useValue(new MockJobSeekerSituationRepository([georges]))
+      .useValue(jobSeekerSituationRepositoryMock)
       .compile();
 
     app = moduleFixture.createNestApplication();
@@ -54,10 +58,44 @@ describe('AppController (e2e)', () => {
   });
 
   it('returns georges situation', () => {
+    jobSeekerSituationRepositoryMock.findById.mockResolvedValue(georges);
+
     return request(app.getHttpServer())
       .get('/v2/situations-pole-emploi')
       .query({ identifiant: 'moustaki' })
       .expect(200)
       .expect(JSON.parse(JSON.stringify(georges)));
+  });
+
+  it('returns 404 error when situation is not found', () => {
+    jobSeekerSituationRepositoryMock.findById.mockRejectedValue(
+      new JobSeekerSituationNotFoundError('croute' as JobSeekerSituationId),
+    );
+
+    return request(app.getHttpServer())
+      .get('/v2/situations-pole-emploi')
+      .query({ identifiant: 'croute' })
+      .expect(404)
+      .expect({
+        statusCode: 404,
+        message:
+          "Impossible de trouver la situation pôle emploi correspondant à l'identifiant croute",
+      });
+  });
+
+  it('returns a 502 on other errors', () => {
+    jobSeekerSituationRepositoryMock.findById.mockRejectedValue(
+      new GatewayTimeoutException(),
+    );
+
+    return request(app.getHttpServer())
+      .get('/v2/situations-pole-emploi')
+      .query({ identifiant: 'croute' })
+      .expect(502)
+      .expect({
+        statusCode: 502,
+        message: 'Erreur en provenance des services Pôle Emploi',
+        error: 'Gateway Timeout',
+      });
   });
 });
