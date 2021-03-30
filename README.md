@@ -1,19 +1,19 @@
-Sandbox data connector for the API Particulier Pôle Emploi data provider.
-
-# Served data
-
-See [https://airtable.com/shrVBGM2L2dAbPXxO](https://airtable.com/shrVBGM2L2dAbPXxO).
+API Particulier data connector for the Pôle Emploi data provider.
 
 # Installation
 
 - `cp .env.dist .env`
 - adjust the `.env` with some dev values
-- `pipenv install`
+- `npm install`
 
 # Local development
 
-- `pipenv run flask run`
+- `npm run start:dev`
 
 # Deployment
 
 The app is deployed on Etalab's [Dokku](https://github.com/dokku/dokku) instance.
+
+# Mock data
+
+See [the mocked situations](https://airtable.com/shrVBGM2L2dAbPXxO).
