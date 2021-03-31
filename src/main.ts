@@ -7,7 +7,9 @@ dotenv.config();
 const PORT = process.env.PORT || 3000;
 
 async function bootstrap() {
-  const app = await NestFactory.create(JobSeekerModule);
+  const app = await NestFactory.create(JobSeekerModule, {
+    cors: { origin: /api\.gouv\.fr$/ },
+  });
 
   const config = new DocumentBuilder()
     .setTitle('Connecteur Pôle Emploi')
