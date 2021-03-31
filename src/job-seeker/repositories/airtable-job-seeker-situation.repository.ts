@@ -53,14 +53,14 @@ export class AirtableJobSeekerSituationRepository
       fields.nomUsage,
       fields.prenom,
       fields.sexe,
-      fields.dateNaissance,
+      new Date(fields.dateNaissance),
       fields.codeCertificationCNAV,
       fields.telephone,
       fields.telephone2,
       fields.email,
       address,
-      fields.dateInscription,
-      fields.dateCessationInscription,
+      new Date(fields.dateInscription),
+      new Date(fields.dateCessationInscription),
       fields.categorieInscription,
     );
   }
