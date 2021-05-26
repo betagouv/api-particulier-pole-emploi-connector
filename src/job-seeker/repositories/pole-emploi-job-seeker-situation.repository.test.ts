@@ -30,11 +30,7 @@ describe('The PE repository', () => {
       telephone: '0628687614',
     };
 
-    mock
-      .onPost(
-        'https://api.emploi-store.fr/partenaire/statutaugmente/v1/statutAugmente',
-      )
-      .reply(200, expectedResponse);
+    mock.onPost().reply(200, expectedResponse);
 
     const response = await repository.findById(
       'Caroline1977' as JobSeekerSituationId,

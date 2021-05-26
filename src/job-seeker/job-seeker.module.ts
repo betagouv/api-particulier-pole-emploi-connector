@@ -18,8 +18,7 @@ import * as tokenProvider from 'axios-token-interceptor';
       useFactory() {
         if (process.env.MOCK_PROVIDER === 'false') {
           const getClientCredentials = oauth.client(axios.create(), {
-            url:
-              'https://entreprise.pole-emploi.fr/connexion/oauth2/access_token?realm=%2Fpartenaire',
+            url: process.env.POLE_EMPLOI_TOKEN_URL,
             grant_type: 'client_credentials',
             client_id: process.env.POLE_EMPLOI_CLIENT_ID,
             client_secret: process.env.POLE_EMPLOI_CLIENT_SECRET,
