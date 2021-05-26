@@ -7,4 +7,6 @@ export interface JobSeekerSituationRepository {
   findById(id: JobSeekerSituationId): Promise<JobSeekerSituation>;
 }
 
-export const jobSeekerSituationRepositoryProviderToken = Symbol();
+export const JOB_SEEKER_SITUATION_REPOSITORY_TOKEN = Symbol(
+  'JobSeekerSituationRepository',
+);
