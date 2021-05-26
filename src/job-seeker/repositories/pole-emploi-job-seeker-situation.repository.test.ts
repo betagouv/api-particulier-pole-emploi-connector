@@ -31,7 +31,7 @@ describe('The PE repository', () => {
     };
 
     mock
-      .onGet(
+      .onPost(
         'https://api.emploi-store.fr/partenaire/statutaugmente/v1/statutAugmente',
       )
       .reply(200, expectedResponse);
@@ -40,7 +40,7 @@ describe('The PE repository', () => {
       'Caroline1977' as JobSeekerSituationId,
     );
 
-    expect(mock.history.get).toHaveLength(1);
+    expect(mock.history.post).toHaveLength(1);
     expect(response).toEqual({
       identifiant: 'Caroline1977',
       ...expectedResponse,

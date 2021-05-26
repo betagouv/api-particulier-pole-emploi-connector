@@ -1,4 +1,4 @@
-import { HttpModule, HttpService, Module } from '@nestjs/common';
+import { HttpService, Module } from '@nestjs/common';
 import { TerminusModule } from '@nestjs/terminus';
 import { HealthController } from 'src/job-seeker/health.controller';
 import { JobSeekerController } from 'src/job-seeker/job-seeker.controller';
@@ -8,23 +8,13 @@ import { PoleEmploiJobSeekerSituationRepository } from 'src/job-seeker/repositor
 import axios from 'axios';
 import * as oauth from 'axios-oauth-client';
 import * as tokenProvider from 'axios-token-interceptor';
-import { AXIOS_INSTANCE_TOKEN } from '@nestjs/common/http/http.constants';
 
 @Module({
-  imports: [HttpModule, TerminusModule],
+  imports: [TerminusModule],
   controllers: [JobSeekerController, HealthController],
   providers: [
     {
       provide: JOB_SEEKER_SITUATION_REPOSITORY_TOKEN,
-      useFactory(httpService: HttpService) {
-        return process.env.MOCK_PROVIDER === 'false'
-          ? new PoleEmploiJobSeekerSituationRepository(httpService)
-          : new AirtableJobSeekerSituationRepository(httpService);
-      },
-      inject: [HttpService],
-    },
-    {
-      provide: AXIOS_INSTANCE_TOKEN,
       useFactory() {
         if (process.env.MOCK_PROVIDER === 'false') {
           const getClientCredentials = oauth.client(axios.create(), {
@@ -36,15 +26,16 @@ import { AXIOS_INSTANCE_TOKEN } from '@nestjs/common/http/http.constants';
             scope: process.env.POLE_EMPLOI_SCOPES,
           });
 
-          const instance = axios.create();
-          instance.interceptors.request.use(
+          const axiosInstance = axios.create();
+          axiosInstance.interceptors.request.use(
             oauth.interceptor(tokenProvider, getClientCredentials),
           );
 
-          return instance;
+          return new PoleEmploiJobSeekerSituationRepository(
+            new HttpService(axiosInstance),
+          );
         }
-
-        return axios.create();
+        return new AirtableJobSeekerSituationRepository(new HttpService());
       },
     },
   ],

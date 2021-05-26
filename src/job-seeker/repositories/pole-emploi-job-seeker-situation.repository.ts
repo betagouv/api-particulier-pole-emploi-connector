@@ -12,8 +12,9 @@ export class PoleEmploiJobSeekerSituationRepository
 
   async findById(id: JobSeekerSituationId): Promise<JobSeekerSituation> {
     const { data } = await this.httpService
-      .get<PoleEmploiSituationDTO>(
+      .post<PoleEmploiSituationDTO>(
         'https://api.emploi-store.fr/partenaire/statutaugmente/v1/statutAugmente',
+        id,
       )
       .toPromise();
     return {
