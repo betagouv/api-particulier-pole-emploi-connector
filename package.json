@@ -15,7 +15,8 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:integration": "jest --config ./test/integration/jest-integration.json",
+    "test:e2e": "jest --config ./test/end-to-end/jest-end-to-end.json"
   },
   "dependencies": {
     "@nestjs/common": "^7.5.1",
@@ -23,6 +24,8 @@
     "@nestjs/platform-express": "^7.5.1",
     "@nestjs/swagger": "^4.8.0",
     "@nestjs/terminus": "^7.1.1",
+    "axios-oauth-client": "^1.4.1",
+    "axios-token-interceptor": "^0.2.0",
     "dotenv": "^8.2.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
@@ -39,6 +42,7 @@
     "@types/supertest": "^2.0.10",
     "@typescript-eslint/eslint-plugin": "^4.6.1",
     "@typescript-eslint/parser": "^4.6.1",
+    "axios-mock-adapter": "^1.19.0",
     "eslint": "^7.12.1",
     "eslint-config-prettier": "7.1.0",
     "eslint-plugin-prettier": "^3.1.4",
@@ -58,7 +62,7 @@
       "ts"
     ],
     "rootDir": ".",
-    "testRegex": ".*\\.spec\\.ts$",
+    "testRegex": "src/.*\\.test\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
     },

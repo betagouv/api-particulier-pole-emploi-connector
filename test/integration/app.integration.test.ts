@@ -7,7 +7,7 @@ import {
   JobSeekerSituation,
   JobSeekerSituationId,
 } from 'src/job-seeker/entities/job-seeker-situation.entity';
-import { jobSeekerSituationRepositoryProviderToken } from 'src/job-seeker/repositories/job-seeker-situation.repository';
+import { JOB_SEEKER_SITUATION_REPOSITORY_TOKEN } from 'src/job-seeker/repositories/job-seeker-situation.repository';
 import { JobSeekerSituationNotFoundError } from 'src/job-seeker/errors/job-seeker-situation-not-found.error';
 
 describe('AppController (e2e)', () => {
@@ -49,7 +49,7 @@ describe('AppController (e2e)', () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [JobSeekerModule],
     })
-      .overrideProvider(jobSeekerSituationRepositoryProviderToken)
+      .overrideProvider(JOB_SEEKER_SITUATION_REPOSITORY_TOKEN)
       .useValue(jobSeekerSituationRepositoryMock)
       .compile();
 

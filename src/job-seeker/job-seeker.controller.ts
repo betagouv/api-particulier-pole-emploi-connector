@@ -7,7 +7,7 @@ import { JobSeekerSituationNotFoundErrorFilter } from 'src/job-seeker/filters/jo
 import { GatewayErrorFilter } from 'src/job-seeker/filters/gateway-error.filter';
 import {
   JobSeekerSituationRepository,
-  jobSeekerSituationRepositoryProviderToken,
+  JOB_SEEKER_SITUATION_REPOSITORY_TOKEN,
 } from 'src/job-seeker/repositories/job-seeker-situation.repository';
 import {
   ApiOkResponse,
@@ -21,7 +21,7 @@ import {
 @Controller('v2/situations-pole-emploi')
 export class JobSeekerController {
   constructor(
-    @Inject(jobSeekerSituationRepositoryProviderToken)
+    @Inject(JOB_SEEKER_SITUATION_REPOSITORY_TOKEN)
     private readonly jobSeekerSituationRepository: JobSeekerSituationRepository,
   ) {}
 
