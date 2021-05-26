@@ -13,7 +13,7 @@ export class Address {
   @ApiPropertyOptional()
   public readonly ligneVoie: string;
   @ApiPropertyOptional()
-  public readonly ligneComplementDestinaire: string;
+  public readonly ligneComplementDestinataire: string;
   @ApiPropertyOptional()
   public readonly ligneComplementAdresse: string;
   @ApiPropertyOptional()
@@ -26,7 +26,7 @@ export class Address {
     INSEECommune: string,
     localite: string,
     ligneVoie: string,
-    ligneComplementDestinaire: string,
+    ligneComplementDestinataire: string,
     ligneComplementAdresse: string,
     ligneComplementDistribution: string,
     ligneNom: string,
@@ -35,7 +35,7 @@ export class Address {
     this.INSEECommune = INSEECommune;
     this.localite = localite;
     this.ligneVoie = ligneVoie;
-    this.ligneComplementDestinaire = ligneComplementDestinaire;
+    this.ligneComplementDestinataire = ligneComplementDestinataire;
     this.ligneComplementAdresse = ligneComplementAdresse;
     this.ligneComplementDistribution = ligneComplementDistribution;
     this.ligneNom = ligneNom;
