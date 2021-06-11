@@ -1,5 +1,6 @@
 import { JobSeekerSituation } from 'src/job-seeker/entities/job-seeker-situation.entity';
 import * as _ from 'lodash';
+import { Injectable } from '@nestjs/common';
 
 export type Scope =
   | 'pole_emploi_identite'
@@ -16,8 +17,9 @@ const scopesConfiguration: ScopesConfiguration = {
   pole_emploi_inscription: ['dateInscription', 'dateCessationInscription'],
 };
 
+@Injectable()
 export class ScopesFilter {
-  filter(scopes: Scope[], response: JobSeekerSituation) {
+  filter(scopes: Scope[], response: JobSeekerSituation): JobSeekerSituation {
     const maskedProperties = _(
       scopes.map((scope) => scopesConfiguration[scope]),
     )
@@ -29,6 +31,6 @@ export class ScopesFilter {
         return result;
       }
       return { ...result, [key]: response[key] };
-    }, {});
+    }, {} as JobSeekerSituation);
   }
 }
