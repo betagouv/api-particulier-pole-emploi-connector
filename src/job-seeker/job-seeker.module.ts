@@ -8,6 +8,8 @@ import { PoleEmploiJobSeekerSituationRepository } from 'src/job-seeker/repositor
 import axios from 'axios';
 import * as oauth from 'axios-oauth-client';
 import * as tokenProvider from 'axios-token-interceptor';
+import { ScopesFilter } from 'src/job-seeker/scopes.filter';
+import { ScopesInterceptor } from 'src/job-seeker/interceptors/scopes';
 
 @Module({
   imports: [TerminusModule],
@@ -37,6 +39,8 @@ import * as tokenProvider from 'axios-token-interceptor';
         return new AirtableJobSeekerSituationRepository(new HttpService());
       },
     },
+    ScopesFilter,
+    ScopesInterceptor,
   ],
 })
 export class JobSeekerModule {}

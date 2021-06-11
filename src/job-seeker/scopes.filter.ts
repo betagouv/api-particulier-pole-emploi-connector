@@ -11,10 +11,23 @@ export type Scope =
 export type ScopesConfiguration = Record<Scope, (keyof JobSeekerSituation)[]>;
 
 const scopesConfiguration: ScopesConfiguration = {
-  pole_emploi_identite: ['identifiant'],
+  pole_emploi_identite: [
+    'identifiant',
+    'civilite',
+    'nom',
+    'nomUsage',
+    'prenom',
+    'sexe',
+    'dateNaissance',
+  ],
   pole_emploi_adresse: ['adresse'],
-  pole_emploi_contact: ['dateNaissance'],
-  pole_emploi_inscription: ['dateInscription', 'dateCessationInscription'],
+  pole_emploi_contact: ['email', 'telephone', 'telephone2'],
+  pole_emploi_inscription: [
+    'dateInscription',
+    'dateCessationInscription',
+    'codeCertificationCNAV',
+    'categorieInscription',
+  ],
 };
 
 @Injectable()

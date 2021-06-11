@@ -1,10 +1,16 @@
-import { CallHandler, ExecutionContext, NestInterceptor } from '@nestjs/common';
+import {
+  CallHandler,
+  ExecutionContext,
+  Injectable,
+  NestInterceptor,
+} from '@nestjs/common';
 import { Request } from 'express';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { JobSeekerSituation } from 'src/job-seeker/entities/job-seeker-situation.entity';
 import { Scope, ScopesFilter } from 'src/job-seeker/scopes.filter';
 
+@Injectable()
 export class ScopesInterceptor
   implements NestInterceptor<JobSeekerSituation, Partial<JobSeekerSituation>> {
   constructor(private readonly scopesFilter: ScopesFilter) {}

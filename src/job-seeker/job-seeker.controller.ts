@@ -1,4 +1,11 @@
-import { Controller, Get, Inject, Query, UseFilters } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Inject,
+  Query,
+  UseFilters,
+  UseInterceptors,
+} from '@nestjs/common';
 import {
   JobSeekerSituationId,
   JobSeekerSituation,
@@ -16,8 +23,10 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
+import { ScopesInterceptor } from 'src/job-seeker/interceptors/scopes';
 
 @ApiTags('Pôle Emploi')
+@UseInterceptors(ScopesInterceptor)
 @Controller('v2/situations-pole-emploi')
 export class JobSeekerController {
   constructor(
