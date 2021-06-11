@@ -34,6 +34,8 @@ describe('The scopes filters', () => {
     );
 
     expect(filteredData).toEqual({
+      categorieInscription: 'PERSONNE SANS EMPLOI NON DISPONIBLE IMMEDIATEMENT',
+      codeCertificationCNAV: 'VC',
       dateCessationInscription: new Date('2021-08-20T22:00:00.000Z'),
       dateInscription: new Date('2021-03-14T23:00:00.000Z'),
     });
