@@ -63,6 +63,10 @@ describe('AppController (e2e)', () => {
     return request(app.getHttpServer())
       .get('/v2/situations-pole-emploi')
       .query({ identifiant: 'moustaki' })
+      .set({
+        'X-Application-Scopes':
+          'pole_emploi_identite,pole_emploi_contact,pole_emploi_adresse,pole_emploi_inscription',
+      })
       .expect(200)
       .expect(JSON.parse(JSON.stringify(georges)));
   });
@@ -75,6 +79,10 @@ describe('AppController (e2e)', () => {
     return request(app.getHttpServer())
       .get('/v2/situations-pole-emploi')
       .query({ identifiant: 'croute' })
+      .set({
+        'X-Application-Scopes':
+          'pole_emploi_identite,pole_emploi_contact,pole_emploi_adresse,pole_emploi_inscription',
+      })
       .expect(404)
       .expect({
         statusCode: 404,
@@ -91,6 +99,10 @@ describe('AppController (e2e)', () => {
     return request(app.getHttpServer())
       .get('/v2/situations-pole-emploi')
       .query({ identifiant: 'croute' })
+      .set({
+        'X-Application-Scopes':
+          'pole_emploi_identite,pole_emploi_contact,pole_emploi_adresse,pole_emploi_inscription',
+      })
       .expect(502)
       .expect({
         statusCode: 502,

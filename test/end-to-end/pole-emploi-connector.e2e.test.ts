@@ -22,6 +22,7 @@ describe('Pole Emploi connector', () => {
     return request(app.getHttpServer())
       .get('/v2/situations-pole-emploi')
       .query({ identifiant: 'existepas' })
+      .set({ 'X-Application-Scopes': 'pole_emploi_inscription' })
       .expect(404)
       .expect({
         statusCode: 404,
