@@ -16,7 +16,9 @@ describe('The scopes filters', () => {
         ligneVoie: '2 RUE DE LA VAU RENARD',
         localite: '54380 GEZONCOURT',
       },
-      categorieInscription: 'PERSONNE SANS EMPLOI NON DISPONIBLE IMMEDIATEMENT',
+      codeCategorieInscription: 1,
+      libelleCategorieInscription:
+        'PERSONNE SANS EMPLOI NON DISPONIBLE IMMEDIATEMENT',
       civilite: 'MME',
       codeCertificationCNAV: 'VC',
       dateCessationInscription: new Date('2021-08-21T00:00:00+02:00'),
@@ -34,7 +36,9 @@ describe('The scopes filters', () => {
     );
 
     expect(filteredData).toEqual({
-      categorieInscription: 'PERSONNE SANS EMPLOI NON DISPONIBLE IMMEDIATEMENT',
+      codeCategorieInscription: 1,
+      libelleCategorieInscription:
+        'PERSONNE SANS EMPLOI NON DISPONIBLE IMMEDIATEMENT',
       codeCertificationCNAV: 'VC',
       dateCessationInscription: new Date('2021-08-20T22:00:00.000Z'),
       dateInscription: new Date('2021-03-14T23:00:00.000Z'),

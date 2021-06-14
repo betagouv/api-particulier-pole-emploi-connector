@@ -16,7 +16,8 @@ export type AirtableSituationDTO = {
     civilite: string;
     ligneNom: string;
     codePostal: string;
-    categorieInscription: string;
+    codeCategorieInscription: number;
+    libelleCategorieInscription: string;
     nomUsage: string;
     dateNaissance: Date;
     nom: string;

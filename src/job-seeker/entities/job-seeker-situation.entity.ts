@@ -72,7 +72,9 @@ export class JobSeekerSituation {
   @ApiPropertyOptional()
   public readonly dateCessationInscription?: Date;
   @ApiPropertyOptional()
-  public readonly categorieInscription?: string;
+  public readonly codeCategorieInscription?: number;
+  @ApiPropertyOptional()
+  public readonly libelleCategorieInscription?: string;
 
   constructor(
     identifiant: JobSeekerSituationId,
@@ -89,7 +91,8 @@ export class JobSeekerSituation {
     adresse?: Address,
     dateInscription?: Date,
     dateCessationInscription?: Date,
-    categorieInscription?: string,
+    codeCategorieInscription?: number,
+    libelleCategorieInscription?: string,
   ) {
     this.identifiant = identifiant;
     this.civilite = civilite;
@@ -105,6 +108,7 @@ export class JobSeekerSituation {
     this.adresse = adresse;
     this.dateInscription = dateInscription;
     this.dateCessationInscription = dateCessationInscription;
-    this.categorieInscription = categorieInscription;
+    this.codeCategorieInscription = codeCategorieInscription;
+    this.libelleCategorieInscription = libelleCategorieInscription;
   }
 }

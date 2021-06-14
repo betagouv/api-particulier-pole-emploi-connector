@@ -61,7 +61,8 @@ export class AirtableJobSeekerSituationRepository
       address,
       new Date(fields.dateInscription),
       new Date(fields.dateCessationInscription),
-      fields.categorieInscription,
+      fields.codeCategorieInscription,
+      fields.libelleCategorieInscription,
     );
   }
 }

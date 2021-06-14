@@ -10,6 +10,7 @@ export type PoleEmploiSituationDTO = {
     ligneComplementDistribution: string;
   };
   categorieInscription: string;
+  libellecategorieInscription: string;
   civilite: string;
   codeCertificationCNAV: string;
   dateCessationInscription: Date;
