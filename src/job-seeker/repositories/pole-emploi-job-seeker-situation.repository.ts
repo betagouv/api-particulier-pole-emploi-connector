@@ -18,7 +18,23 @@ export class PoleEmploiJobSeekerSituationRepository
         .toPromise();
       return {
         identifiant: id as JobSeekerSituationId,
-        ...data,
+        civilite: data.civilite,
+        nom: data.nom,
+        nomUsage: data.nomUsage,
+        prenom: data.prenom,
+        sexe: data.sexe,
+        dateNaissance: data.dateNaissance,
+        codeCertificationCNAV: data.codeCertificationCNAV,
+        telephone: data.telephone,
+        telephone2: data.telephone2,
+        email: data.email,
+        adresse: data.adresse,
+        dateInscription: data.dateInscription,
+        dateCessationInscription: data.dateCessationInscription,
+        codeCategorieInscription: data.categorieInscription
+          ? parseInt(data.categorieInscription)
+          : undefined,
+        libelleCategorieInscription: data.libellecategorieInscription,
       };
     } catch (err) {
       if (err.response.status === 404) {

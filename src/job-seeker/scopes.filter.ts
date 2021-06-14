@@ -26,7 +26,8 @@ const scopesConfiguration: ScopesConfiguration = {
     'dateInscription',
     'dateCessationInscription',
     'codeCertificationCNAV',
-    'categorieInscription',
+    'codeCategorieInscription',
+    'libelleCategorieInscription',
   ],
 };
 

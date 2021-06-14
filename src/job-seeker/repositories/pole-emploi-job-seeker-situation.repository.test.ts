@@ -18,7 +18,9 @@ describe('The PE repository', () => {
         ligneVoie: '2 RUE DE LA VAU RENARD',
         localite: '54380 GEZONCOURT',
       },
-      categorieInscription: 'PERSONNE SANS EMPLOI NON DISPONIBLE IMMEDIATEMENT',
+      categorieInscription: 1,
+      libellecategorieInscription:
+        'PERSONNE SANS EMPLOI NON DISPONIBLE IMMEDIATEMENT',
       civilite: 'MME',
       codeCertificationCNAV: 'VC',
       dateCessationInscription: '2021-08-21T00:00:00+02:00',
@@ -39,7 +41,25 @@ describe('The PE repository', () => {
     expect(mock.history.post).toHaveLength(1);
     expect(response).toEqual({
       identifiant: 'Caroline1977',
-      ...expectedResponse,
+      adresse: {
+        INSEECommune: '54225',
+        codePostal: '54380',
+        ligneNom: 'BELLO',
+        ligneVoie: '2 RUE DE LA VAU RENARD',
+        localite: '54380 GEZONCOURT',
+      },
+      codeCategorieInscription: 1,
+      libelleCategorieInscription:
+        'PERSONNE SANS EMPLOI NON DISPONIBLE IMMEDIATEMENT',
+      civilite: 'MME',
+      codeCertificationCNAV: 'VC',
+      dateCessationInscription: '2021-08-21T00:00:00+02:00',
+      dateInscription: '2021-03-15T00:00:00+01:00',
+      dateNaissance: '1977-01-19T00:00:00+01:00',
+      email: 'BELLOCAROLINE01@GMAIL.COM',
+      nom: 'BELLO',
+      prenom: 'CAROLINE',
+      telephone: '0628687614',
     });
   });
 });
