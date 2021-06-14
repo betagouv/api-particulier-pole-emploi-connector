@@ -53,14 +53,16 @@ export class AirtableJobSeekerSituationRepository
       fields.nomUsage,
       fields.prenom,
       fields.sexe,
-      new Date(fields.dateNaissance),
+      fields.dateNaissance ? new Date(fields.dateNaissance) : undefined,
       fields.codeCertificationCNAV,
       fields.telephone,
       fields.telephone2,
       fields.email,
       address,
-      new Date(fields.dateInscription),
-      new Date(fields.dateCessationInscription),
+      fields.dateInscription ? new Date(fields.dateInscription) : undefined,
+      fields.dateCessationInscription
+        ? new Date(fields.dateCessationInscription)
+        : undefined,
       fields.codeCategorieInscription,
       fields.libelleCategorieInscription,
     );
