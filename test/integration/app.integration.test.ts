@@ -38,6 +38,7 @@ describe('AppController (e2e)', () => {
     georgesAddress,
     new Date('2018-09-10T00:00:00+02:00'),
     null,
+    1,
     'PERSONNE SANS EMPLOI DISPONIBLE DUREE INDETERMINEE PLEIN TPS',
   );
 
